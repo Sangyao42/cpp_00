@@ -1,13 +1,14 @@
 # Makefile template for C++ projects
-NAME := test
+NAME := Test
 CC := c++
-
-SRCS := iostream_test.cpp
-OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
-#HEADS :=
-OBJ_DIR := ./obj/
-
 CPPFLAGS := -std=c++98 -Wall -Wextra -Werror
+
+SRC_DIR := ./src/
+OBJ_DIR := ./obj/
+SRCS := iostream_test.cpp
+OBJS := $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
+
+#HEADER :=
 
 all : $(NAME)
 
@@ -32,4 +33,4 @@ run :
 	$(MAKE) all
 	./$(NAME)
 
-.phony: all clean fclean re run
+.phony: all clean fclean re runn
