@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:33:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/22 19:20:03 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/23 13:10:41 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	PhoneBook::displayContacts() const
 	while (i < total_contacts)
 	{
 		std::cout << std::setw(10) << i << "|";
-		this->_contacts[i].displayContactAbbriaviated();
+		this->_contacts[i].displayContactAbbriviated();
 		i++;
 	}
 }

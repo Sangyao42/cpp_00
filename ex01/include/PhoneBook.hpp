@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 18:26:19 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/21 21:31:08 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/23 13:10:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <Contact.hpp>
 
 #include <iostream>
+#include <iomanip>
 
 class PhoneBook
 {
@@ -25,7 +26,7 @@ class PhoneBook
 		~PhoneBook();
 
 		int				addContact(Contact contact);
-		const Contact	*searchContact(unsigned int index) const;
+		const Contact	*searchContact(int index) const;
 		void			displayContacts() const;
 
 	private:
