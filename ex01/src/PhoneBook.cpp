@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:33:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/23 13:10:41 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/24 16:16:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ PhoneBook::~PhoneBook() {}
 
 int	PhoneBook::addContact(Contact contact)
 {
-	if (contact.contactIsValid() == false)
+	if (contact.contactIsValid())
+	{
+		this->_contacts[this->_index_to_add] = contact;
+		this->_nbContacts++;
+		this->_index_to_add = this->_nbContacts % _maxContacts;
+		return (EXIT_SUCCESS);
+	}
+	else
 		return (EXIT_FAILURE);
-	this->_contacts[this->_index_to_add] = contact;
-	this->_nbContacts++;
-	this->_index_to_add = this->_nbContacts % _maxContacts;
-	return (EXIT_SUCCESS);
 }
 
 const Contact	*PhoneBook::searchContact(int index) const
@@ -32,7 +35,7 @@ const Contact	*PhoneBook::searchContact(int index) const
 		return (&this->_contacts[index]);
 	else
 	{
-		std::cout << "Invalid index" << std::endl;
+		std::cerr << "Invalid index" << std::endl;
 		return (NULL);
 	}
 }
@@ -62,4 +65,5 @@ void	PhoneBook::displayContacts() const
 		this->_contacts[i].displayContactAbbriviated();
 		i++;
 	}
+	return ;
 }

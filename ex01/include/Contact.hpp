@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:07:17 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/23 13:09:31 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/24 16:11:41 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class Contact
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
 
-		void	_displayField(std::string field) const;
+		std::string	_subField(std::string field) const;
 };
 
 #endif

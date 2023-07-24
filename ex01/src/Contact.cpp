@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:32:50 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/22 19:19:24 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/24 16:12:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 
 bool	Contact::contactIsValid() const
 {
-	if (this->_firstName.empty() == true ||
-		this->_lastName.empty() == true ||
-		this->_nickname.empty() == true ||
-		this->_phoneNumber.empty() == true ||
-		this->_darkestSecret.empty() == true)
+	if (this->_firstName.empty() ||
+		this->_lastName.empty()||
+		this->_nickname.empty()||
+		this->_phoneNumber.empty()||
+		this->_darkestSecret.empty())
 		return (false);
 	return (true);
 }
@@ -63,15 +63,15 @@ void	Contact::displayContact() const
 
 void	Contact::displayContactAbbriviated() const
 {
-	std::cout << std::setw(10) << _displayField(this->_firstName) << "|";
-	std::cout << std::setw(10) << _displayField(this->_lastName) << "|";
-	std::cout << std::setw(10) << _displayField(this->_nickname) << std::endl;
+	std::cout << std::setw(10) << _subField(this->_firstName) << "|";
+	std::cout << std::setw(10) << _subField(this->_lastName) << "|";
+	std::cout << std::setw(10) << _subField(this->_nickname) << std::endl;
 }
 
-void	Contact::_displayField(std::string field) const
+std::string	Contact::_subField(std::string field) const
 {
 	if (field.length() > 10)
-		std::cout << field.substr(0,9) << ".";
+		return (field.substr(0,9) + ".");
 	else
-		std::cout << field;
+		return (field);
 }
