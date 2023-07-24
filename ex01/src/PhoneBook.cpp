@@ -6,14 +6,14 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:33:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/24 16:16:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/24 21:56:38 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <PhoneBook.hpp>
 
-PhoneBook::PhoneBook() {}
-
+#include <stdio.h>
+PhoneBook::PhoneBook() : _index_to_add(0), _nbContacts(0) {}
 PhoneBook::~PhoneBook() {}
 
 int	PhoneBook::addContact(Contact contact)
@@ -31,7 +31,8 @@ int	PhoneBook::addContact(Contact contact)
 
 const Contact	*PhoneBook::searchContact(int index) const
 {
-	if (index < this->_nbContacts && index < _maxContacts && index >= 0)
+	if ((static_cast<unsigned int>(index)) < this->_nbContacts &&
+		(static_cast<unsigned int>(index)) < _maxContacts && index >= 0)
 		return (&this->_contacts[index]);
 	else
 	{
@@ -66,4 +67,9 @@ void	PhoneBook::displayContacts() const
 		i++;
 	}
 	return ;
+}
+
+unsigned int	PhoneBook::getNbContacts() const
+{
+	return (this->_nbContacts);
 }

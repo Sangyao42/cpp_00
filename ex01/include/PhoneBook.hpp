@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 18:26:19 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/23 13:10:03 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/24 21:54:49 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ class PhoneBook
 {
 	public:
 
-		PhoneBook() : _index_to_add(0), _nbContacts(0) {};
+		PhoneBook();
 		~PhoneBook();
 
 		int				addContact(Contact contact);
 		const Contact	*searchContact(int index) const;
 		void			displayContacts() const;
+		unsigned int	getNbContacts() const;
 
 	private:
 		static const unsigned int	_maxContacts = 8;
