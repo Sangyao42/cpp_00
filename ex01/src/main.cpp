@@ -6,13 +6,14 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:25:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/24 23:01:19 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/27 15:45:58 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <PhoneBook.hpp>
 #include <Contact.hpp>
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -52,6 +53,13 @@ namespace cmdExec
 		return (true);
 	}
 
+	bool IsValidDarkSecret(const std::string input)
+	{
+		if (input.empty())
+			return (false);
+		return (true);
+	}
+
 	int	GetUserInput(const std::string prompt, std::string *input, bool (*IsValid)(const std::string))
 	{
 		std::cout << prompt << ": ";
@@ -60,10 +68,11 @@ namespace cmdExec
 		{
 			if (IsValid && !(*IsValid)(*input))
 			{
-				std::cout << "Please enter a valid " << prompt << ": ";
+				std::cerr << "Please enter a valid " << prompt << ": ";
 				std::getline(std::cin, *input);
 			}
-			return (EXIT_SUCCESS);
+			else
+				return (EXIT_SUCCESS);
 		}
 		return (EXIT_FAILURE);
 	}
@@ -89,7 +98,7 @@ namespace cmdExec
 			contact.setPhoneNumber(input);
 		else
 			return (EXIT_FAILURE);
-		if (GetUserInput("Darkest Secret", &input, NULL) == EXIT_SUCCESS)
+		if (GetUserInput("Darkest Secret", &input, IsValidDarkSecret) == EXIT_SUCCESS)
 			contact.setDarkestSecret(input);
 		else
 			return (EXIT_FAILURE);
@@ -106,7 +115,7 @@ namespace cmdExec
 			return (EXIT_SUCCESS);
 		if (GetUserInput("Index to search", &input, IsValidDigit) == EXIT_SUCCESS)
 		{
-			contact = phoneBook.searchContact(std::stoi(input));
+			contact = phoneBook.searchContact(atoi(input.c_str()));
 			if (contact != NULL)
 			{
 				contact->displayContact();
@@ -140,7 +149,11 @@ int	main(int argc, char *argv[])
 		if (cmd == "ADD")
 		{
 			if (cmdExec::AddContact(&phoneBook))
+			{
 				std::cerr << "Failed to add contact" << std::endl;
+				std::getline(std::cin, cmd);
+				continue ;
+			}
 			else
 				std::cout << "Contact added" << std::endl;
 		}
@@ -149,13 +162,14 @@ int	main(int argc, char *argv[])
 			if (cmdExec::SearchContact(phoneBook))
 			{
 				std::cerr << "Failed to search contact" << std::endl;
-				return (EXIT_FAILURE);
+				std::getline(std::cin, cmd);
+				continue ;
 			}
 		}
 		else if (cmd == "EXIT")
 			return (EXIT_SUCCESS);
 		else
-			std::cout << "Invalid command" << std::endl;
+			std::cerr << "Invalid command" << std::endl;
 		std::getline(std::cin, cmd);
 	}
 	return (EXIT_FAILURE);

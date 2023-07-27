@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:33:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/24 21:56:38 by sawang           ###   ########.fr       */
+/*   Updated: 2023/07/27 15:39:46 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ const Contact	*PhoneBook::searchContact(int index) const
 		return (&this->_contacts[index]);
 	else
 	{
-		std::cerr << "Invalid index" << std::endl;
+		std::cerr << "Index out of range" << std::endl;
 		return (NULL);
 	}
 }
