@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:25:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/07/27 15:45:58 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/11 15:30:07 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,22 +149,14 @@ int	main(int argc, char *argv[])
 		if (cmd == "ADD")
 		{
 			if (cmdExec::AddContact(&phoneBook))
-			{
 				std::cerr << "Failed to add contact" << std::endl;
-				std::getline(std::cin, cmd);
-				continue ;
-			}
 			else
 				std::cout << "Contact added" << std::endl;
 		}
 		else if (cmd == "SEARCH")
 		{
 			if (cmdExec::SearchContact(phoneBook))
-			{
 				std::cerr << "Failed to search contact" << std::endl;
-				std::getline(std::cin, cmd);
-				continue ;
-			}
 		}
 		else if (cmd == "EXIT")
 			return (EXIT_SUCCESS);
