@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:25:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/11 15:30:07 by sawang           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:03:24 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+
+typedef bool (*IsValid)(const std::string);
 
 namespace cmdExec
 {
@@ -60,7 +62,7 @@ namespace cmdExec
 		return (true);
 	}
 
-	int	GetUserInput(const std::string prompt, std::string *input, bool (*IsValid)(const std::string))
+	int	GetUserInput(const std::string prompt, std::string *input, IsValid IsValid)
 	{
 		std::cout << prompt << ": ";
 		std::getline(std::cin, *input);
